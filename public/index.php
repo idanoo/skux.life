@@ -31,7 +31,7 @@ $photos = $system->getPhotos(48);
             ?>
         </div>
         <div class="footer">
-            <p class="evenlessdark">Copyright retained by the original photographger unless specified</p>
+            <p class="evenlessdark">Copyright retained by the original photographer unless specified (CC-BY-SA-NC)</p>
             <a class="footertext" href="upload.php">Upload</a>
         </div>
         <script>
