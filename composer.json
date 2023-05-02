@@ -1,0 +1,10 @@
+{
+    "require": {
+        "robmorgan/phinx": "^0.13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Skuxlife\\": "src/"
+        }
+    }
+}

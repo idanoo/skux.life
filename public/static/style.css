@@ -1,0 +1,69 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #003044;
+}
+
+.logo {
+  width: 100%;
+  text-align: center;
+}
+
+.logoimage {
+  margin: 20px auto 20px auto;
+}
+
+.photos {
+  display: flex;
+  margin: 0 auto 0 auto;
+  width: 1000px;
+}
+
+.photo {
+  width: 240px;
+  margin: 5px;
+}
+
+.photoimg {
+  width: 200px;
+  max-height: 200px;
+}
+
+.footer {
+  margin: 20px;
+  text-align: center;
+  color: #626262;
+}
+
+.footertext:visited {
+  color: #bababa;
+  text-decoration: none;
+}
+
+.footertext:link {
+  color: #bababa;
+  text-decoration: none;
+}
+
+.footertext:hover {
+  color: #626262;
+}
+
+.uploadform {
+  width: 500px;
+  text-align: center;
+  margin: 20px auto 0 auto;
+  color: white;
+}
+
+.dark {
+  color: #191919;
+}
+
+.lessdark {
+  color: #626262;
+}
+
+.evenlessdark {
+  color: #bababa;
+}
