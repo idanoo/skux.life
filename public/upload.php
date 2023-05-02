@@ -26,9 +26,9 @@ if (isset($_POST['submit']) && $_REQUEST['PIN'] === $pinlol) {
         return;
     }
     
-    // Check file size (15MB?)
-    if ($_FILES["fileToUpload"]["size"] > 150000) {
-        echo "Sorry, your file is too large.";
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 10485760) {
+        echo "Sorry, your file is too large. (10MB max)";
         return;
     }
     
