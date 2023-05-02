@@ -33,5 +33,17 @@ $photos = $system->getPhotos(48);
         <div class="footer">
             <a class="footertext" href="upload.php">Upload</a>
         </div>
+        <script>
+            // I hate JS.
+            var interval = setInterval(function() {
+                if (typeof lightbox === 'object') {
+                    lightbox.option({
+                        'resizeDuration': 250,
+                        'imageFadeDuration': 200,
+                    })
+                    clearInterval(interval);
+                }
+            }, 100);
+        </script>
     </body>
 </html>

@@ -10,7 +10,7 @@ class System {
      */
     public function getPhotos(int $limit): array {
         $db = new \PDO('sqlite:../db.sqlite3');
-        $result = $db->query('SELECT photo_name FROM photos ORDER BY created DESC limit ' . $limit);
+        $result = $db->query('SELECT photo_name  FROM photos ORDER BY created DESC limit ' . $limit);
         $data = [];
 
         foreach ($result as $row) {
