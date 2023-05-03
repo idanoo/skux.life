@@ -2,8 +2,14 @@
 
 require '../vendor/autoload.php';
 
+session_start();
+
+if (!Skuxlife\User::loggedIn()) {
+    header('Location: https://skux.life/login');
+}
+
 // If sending and authed
-if (isset($_POST['submit']) && password_verify($_REQUEST['PIN'], '$2y$10$foBOu4K18B0aJBjwU/bEae6He5MLZJo0DC65Y8nUW0Xxh5t0mr5Qe')) {
+if (isset($_POST['submit'])) {
     // Boot to create DB record for upload
     $system = new Skuxlife\System();
     $hash = $system->generateUid();
@@ -60,8 +66,6 @@ if (isset($_POST['submit']) && password_verify($_REQUEST['PIN'], '$2y$10$foBOu4K
     // Redirect!!
     header('Location: https://skux.life/');
     exit;
-} else if (!empty($_REQUEST['PIN']) && !password_verify($_REQUEST['PIN'], '$2y$10$foBOu4K18B0aJBjwU/bEae6He5MLZJo0DC65Y8nUW0Xxh5t0mr5Qe')) {
-    echo '<h1 style="color:white">Invalid pin lol</h1>';
 }
 ?><!DOCTYPE html>
 <html lang="en">

@@ -2,9 +2,11 @@
 
 require '../vendor/autoload.php';
 
+session_start();
+
 // Boot settings
 $system = new Skuxlife\System();
-$photos = $system->getPhotos(48);
+$photos = $system->getPhotos(50);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -21,6 +23,11 @@ $photos = $system->getPhotos(48);
         <div class="logo">
             <img class="logoimage" src="images/logo.png" alt="Skux.Life logo" />
         </div>
+        <div class="navbar">
+            <?= Skuxlife\User::loggedIn()
+                ? '<a class="navtext" href="/upload">Upload</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="navtext" href="/login?logout=1">Logout</a>'
+                : '<a class="navtext" href="/login">Login</a>'; ?>
+        </div>
         <div class="photos">
             <?php
                 foreach ($photos as $photo) {
@@ -34,7 +41,6 @@ $photos = $system->getPhotos(48);
         </div>
         <div class="footer">
             <p class="evenlessdark">Copyright retained by the original photographer unless specified.</p>
-            <a class="footertext" href="upload.php">Upload</a>
         </div>
         <script>
             // I hate JS.

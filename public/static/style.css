@@ -42,17 +42,23 @@ html, body {
   color: #626262;
 }
 
-.footertext:visited {
+.navbar {
+  margin: 20px;
+  text-align: center;
+  color: #bababa;
+}
+
+.navtext:visited {
   color: #bababa;
   text-decoration: none;
 }
 
-.footertext:link {
+.navtext:link {
   color: #bababa;
   text-decoration: none;
 }
 
-.footertext:hover {
+.navtext:hover {
   color: #626262;
 }
 
