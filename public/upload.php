@@ -25,8 +25,8 @@ if (isset($_POST['submit']) && password_verify($_REQUEST['PIN'], '$2y$10$foBOu4K
     }
     
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 10485760) {
-        echo "Sorry, your file is too large. (10MB max)";
+    if ($_FILES["fileToUpload"]["size"] > 52428800) {
+        echo "Sorry, your file is too large.";
         return;
     }
     
