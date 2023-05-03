@@ -74,15 +74,24 @@ class System {
         preg_match('/^([a-z0-9]{40}(\-thumb)?\.[a-z]{3,4})$/', $hash, $matches);
 
         if (count($matches) > 0) {
-            // Delete DB row
             $db = new \PDO('sqlite:../db.sqlite3');
-            $stmt = $db->prepare('DELETE FROM photos WHERE photo_name = :photo_name');
-            $stmt->bindValue(':photo_name', $hash);
-            $stmt->execute();
 
-            // Delete files!
-            @unlink('uploads/' . $hash);
-            @unlink('uploads/' . str_replace('.', '-thumb.', $hash));
+            // Check it's for curr user.
+            $db = new \PDO('sqlite:../db.sqlite3');
+            $stmt = $db->prepare('SELECT photo_name FROM photos WHERE photo_name = :photo_name AND created_user = :created_user');
+            $stmt->execute(['created_user' => $_SESSION['user_id'], 'photo_name' => $hash]);
+            $rows = $stmt->fetchAll();
+        
+            if (count($rows) > 0) {
+                // Delete DB row
+                $stmt = $db->prepare('DELETE FROM photos WHERE photo_name = :photo_name');
+                $stmt->bindValue(':photo_name', $hash);
+                $stmt->execute();
+
+                // Delete files!
+                @unlink('uploads/' . $hash);
+                @unlink('uploads/' . str_replace('.', '-thumb.', $hash));
+            }
         }
     }
 }
