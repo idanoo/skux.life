@@ -40,7 +40,11 @@ $photos = $system->getPhotos(50);
             ?>
         </div>
         <div class="footer">
-            <p class="evenlessdark">Copyright retained by the original photographer unless specified.</p>
+            <p class="evenlessdark">
+                Skux Life is a site for a small collective of photographers wanting a place to show images away from mainstream platforms.<br/></br>
+                Uploads are displayed anonymously on the site and are not to be reproduced without permission.</br>
+                Copyright is retained by the original photographers.
+            </p>
         </div>
         <script>
             // I hate JS.
