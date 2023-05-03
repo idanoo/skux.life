@@ -64,7 +64,6 @@ class User {
         $stmt = $db->prepare('SELECT id, password FROM users WHERE username = :username');
         $stmt->execute(['username' => $username]);
         $rows = $stmt->fetchAll();
-        var_dump($rows);
         if (empty($rows)) {
             return false;
         }

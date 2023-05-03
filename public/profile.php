@@ -5,7 +5,7 @@ require '../vendor/autoload.php';
 session_start();
 
 if (!Skuxlife\User::loggedIn()) {
-    header('Location: https://skux.life/login');
+    header('Location: ' . Skuxlife\System::getURL('/login'));
 }
 
 // If sending and authed
@@ -64,9 +64,13 @@ if (isset($_POST['submit'])) {
     $system->add($targetFile);
 
     // Redirect!!
-    header('Location: https://skux.life/');
+    header('Location: ' . Skuxlife\System::getURL());
     exit;
+} else if (!empty($_REQUEST['delete'])) {
+    Skuxlife\System::delete($_REQUEST['delete']);
 }
+$system = new Skuxlife\System();
+$photos = $system->getPhotos(50, true);
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -77,12 +81,38 @@ if (isset($_POST['submit'])) {
         <link rel="stylesheet" href="static/style.css">
     </head>
     <body>
-        <div class="uploadform">
-            <form action="upload.php" method="post" enctype="multipart/form-data">               
-                Select image to upload:<br/><br/>
-                <input type="file" name="fileToUpload" id="fileToUpload"><br/><br/>
-                <input type="submit" value="Upload Image" name="submit">
-            </form>
+        <div class="logo">
+            <img class="logoimage" src="images/logo.png" alt="Skux.Life logo" />
+        </div>
+        <div class="navbar">
+            <a class="navtext" href="<?= Skuxlife\System::getURL('/') ?>">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="navtext" href="<?= Skuxlife\System::getURL('/logout') ?>">Logout</a>
+        </div>
+        <div class="profile">
+            <div class="profile-left">
+                <div class="userphotos">
+                    <?php
+                        foreach ($photos as $photo) {
+                            ?>
+                            <div class="photo">
+                                    <img class="photoimg" onclick="if (confirm('Do you want to delete this image??')) {
+                                        window.location.href = '<?= Skuxlife\System::getURL('/profile') ?>?delete=<?= $photo ?>';
+                                    }" src="uploads/<?= str_replace('.', '-thumb.', $photo) ?>" />
+                            </div>
+                            <?php
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="profile-right">
+                <div class="uploadform">
+                    <form action="profile.php" method="post" enctype="multipart/form-data">
+                        Select image to upload:<br/><br/>
+                        <input type="file" name="fileToUpload" id="fileToUpload"><br/><br/>
+                        <input type="submit" value="Upload Image" name="submit">
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

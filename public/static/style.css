@@ -23,6 +23,16 @@ html, body {
   flex-wrap: wrap;
 }
 
+.userphotos {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  margin: 0 20px 0 100px;
+  flex-wrap: wrap;
+}
+
 .photo {
   max-width: 250px;
   max-height: 250px;
@@ -42,8 +52,14 @@ html, body {
   color: #626262;
 }
 
+.profile {
+  text-align: center;
+  margin: 0 auto 0 auto;
+  width: 1000px;
+}
+
 .navbar {
-  margin: 20px;
+  margin: 0 0 25px 0;
   text-align: center;
   color: #bababa;
 }
@@ -63,10 +79,25 @@ html, body {
 }
 
 .uploadform {
-  width: 500px;
-  text-align: center;
   margin: 20px auto 0 auto;
   color: white;
+}
+
+.loginform {
+  width: 200px;
+  margin: 20px auto 0 auto;
+  color: white;
+  text-align: center;
+}
+
+.profile-left {
+  width: 400px;
+  float: left;
+} 
+
+.profile-right {
+  width: 500px;
+  float: left;
 }
 
 .dark {

@@ -7,7 +7,6 @@ session_start();
 // Boot settings
 $system = new Skuxlife\System();
 $photos = $system->getPhotos(50);
-
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -25,8 +24,8 @@ $photos = $system->getPhotos(50);
         </div>
         <div class="navbar">
             <?= Skuxlife\User::loggedIn()
-                ? '<a class="navtext" href="/upload">Upload</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="navtext" href="/login?logout=1">Logout</a>'
-                : '<a class="navtext" href="/login">Login</a>'; ?>
+                ? '<a class="navtext" href="' . Skuxlife\System::getURL('/profile') . '">Upload</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="navtext" href="' . Skuxlife\System::getURL('/logout') . '">Logout</a>'
+                : '<a class="navtext" href="' . Skuxlife\System::getURL('/login') . '">Login</a>'; ?>
         </div>
         <div class="photos">
             <?php
