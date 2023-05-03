@@ -4,12 +4,21 @@ require '../vendor/autoload.php';
 
 session_start();
 
-if (!empty($_REQUEST['login']) && !empty($_REQUEST['username']) && !empty($_REQUEST['password'])) {
-    $success = Skuxlife\User::login($_REQUEST['username'], $_REQUEST['password']);
-    if ($success) {
-        header('Location: ' . Skuxlife\System::getURL());
+if (
+    !empty($_REQUEST['register'])
+    && !empty($_REQUEST['username'])
+    && !empty($_REQUEST['password'])
+    && !empty($_REQUEST['code'])
+) {
+    if (!password_verify($_REQUEST['code'], '$2y$10$T4AoNzpPiE/klFkf2irYUep81gLzLBg2KGV48bmWOynYKf9Hsnzn6')) {
+        echo '<h1 style="color:white">Invalid referral code</h1>';
     } else {
-        echo '<h1 style="color:white">There was an error logging in to your account :3</h1>';
+        $success = Skuxlife\User::register($_REQUEST['username'], $_REQUEST['password']);
+        if ($success) {
+            header('Location: ' . Skuxlife\System::getURL());
+        } else {
+            echo '<h1 style="color:white">There was an error registering.. maybe you exist already O_O?</h1>';
+        }
     }
 }
 ?><!DOCTYPE html>
@@ -27,10 +36,10 @@ if (!empty($_REQUEST['login']) && !empty($_REQUEST['username']) && !empty($_REQU
         </div>
         <div class="navbar">
             <a class="navtext" href="<?= Skuxlife\System::getURL('/') ?>">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="navtext" href="<?= Skuxlife\System::getURL('/register') ?>">Register</a>
+            <a class="navtext" href="<?= Skuxlife\System::getURL('/login') ?>">Login</a>
         </div>
         <div class="loginform">
-            <form action="<?= Skuxlife\System::getURL('/login') ?>" method="post">
+            <form action="<?= Skuxlife\System::getURL('/register') ?>" method="post">
                 <table>
                     <tr>
                         <td>username</td>
@@ -41,9 +50,13 @@ if (!empty($_REQUEST['login']) && !empty($_REQUEST['username']) && !empty($_REQU
                         <td><input type="password" name="password"></td>
                     </tr>
                     <tr>
+                        <td>code</td>
+                        <td><input name="code"></td>
+                    </tr>
+                    <tr>
                         <td colspan="2">
                             <br/>
-                            <input type="submit" value="Login" name="login">
+                            <input type="submit" value="Register" name="register">
                         </td>
                     </tr>
                 </table>

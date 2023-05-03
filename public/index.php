@@ -25,7 +25,7 @@ $photos = $system->getPhotos(50);
         <div class="navbar">
             <?= Skuxlife\User::loggedIn()
                 ? '<a class="navtext" href="' . Skuxlife\System::getURL('/profile') . '">Upload</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="navtext" href="' . Skuxlife\System::getURL('/logout') . '">Logout</a>'
-                : '<a class="navtext" href="' . Skuxlife\System::getURL('/login') . '">Login</a>'; ?>
+                : '<a class="navtext" href="' . Skuxlife\System::getURL('/login') . '">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="navtext" href="' . Skuxlife\System::getURL('/register') . '">Register</a>'; ?>
         </div>
         <div class="photos">
             <?php
