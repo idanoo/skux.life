@@ -26,7 +26,9 @@ $photos = $system->getPhotos(48);
                 foreach ($photos as $photo) {
                     echo '<div class="photo">'
                       . '<a data-lightbox="image" href="uploads/' . $photo . '" />'
-                      . '<img class="photoimg" src="uploads/' . $photo . '" /></a></div>';
+                      . '<img class="photoimg" src="uploads/' . str_replace('.', '-thumb.', $photo) . '" />'
+                      . '</a>'
+                      . '</div>';
                 }
             ?>
         </div>

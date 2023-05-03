@@ -1,6 +1,13 @@
 # skux.life
 Anonymous Photo Stream
 
+Required things:
+```
+php-fpm
+php-imagick
+composer
+nginx
+```
 
 Config:
 ```

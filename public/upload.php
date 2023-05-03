@@ -2,10 +2,8 @@
 
 require '../vendor/autoload.php';
 
-$pinlol = '69420';
-
 // If sending and authed
-if (isset($_POST['submit']) && $_REQUEST['PIN'] === $pinlol) {
+if (isset($_POST['submit']) && password_verify($_REQUEST['PIN'], '$2y$10$foBOu4K18B0aJBjwU/bEae6He5MLZJo0DC65Y8nUW0Xxh5t0mr5Qe')) {
     // Boot to create DB record for upload
     $system = new Skuxlife\System();
     $hash = $system->generateUid();
@@ -42,15 +40,27 @@ if (isset($_POST['submit']) && $_REQUEST['PIN'] === $pinlol) {
         return;
     }
     
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFileFull)) {
-        $system->add($targetFile);
-        header('Location: https://skux.life/');
-        exit;
-    } else {
-        echo 'Sorry, there was an error uploading your file.';
-        return;
-    }
-} else if (!empty($_REQUEST['PIN']) && $_REQUEST['PIN'] !== $pinlol) {
+    // Compress
+    $img = new Imagick($_FILES["fileToUpload"]["tmp_name"]);
+    $img->setImageCompression(Imagick::COMPRESSION_JPEG);
+    $img->setImageCompressionQuality(80);
+    $img->setImageFormat("jpg");
+
+    // Strip metadata
+    $img->stripImage();
+    $img->writeImage($targetFileFull);
+
+    // Generate thumb
+    $img->scaleImage(250, 250, Imagick::FILTER_LANCZOS, 1);
+    $img->writeImage('uploads/' . $hash . '-thumb.'. $mimeType);
+    
+    // Add to DB
+    $system->add($targetFile);
+
+    // Redirect!!
+    header('Location: https://skux.life/');
+    exit;
+} else if (!empty($_REQUEST['PIN']) && !password_verify($_REQUEST['PIN'], '$2y$10$foBOu4K18B0aJBjwU/bEae6He5MLZJo0DC65Y8nUW0Xxh5t0mr5Qe')) {
     echo '<h1 style="color:white">Invalid pin lol</h1>';
 }
 ?><!DOCTYPE html>
