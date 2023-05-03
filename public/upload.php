@@ -78,9 +78,7 @@ if (isset($_POST['submit'])) {
     </head>
     <body>
         <div class="uploadform">
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                Input PIN: <input type="text" name="PIN" style="width:60px"/><br/><br/>
-                
+            <form action="upload.php" method="post" enctype="multipart/form-data">               
                 Select image to upload:<br/><br/>
                 <input type="file" name="fileToUpload" id="fileToUpload"><br/><br/>
                 <input type="submit" value="Upload Image" name="submit">
