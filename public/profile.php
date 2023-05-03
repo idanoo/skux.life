@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
     Skuxlife\System::delete($_REQUEST['delete']);
 }
 $system = new Skuxlife\System();
-$photos = $system->getPhotos(50, true);
+$photos = $system->getPhotos(50, $_SESSION['user_id']);
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -86,7 +86,7 @@ $photos = $system->getPhotos(50, true);
         </div>
         <div class="navbar">
             <a class="navtext" href="<?= Skuxlife\System::getURL('/') ?>">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="navtext" href="<?= Skuxlife\System::getURL('/logout') ?>">Logout</a>
+            <a class="navtext" href="<?= Skuxlife\System::getURL('/logout') ?>">Logout (<?= $_SESSION['username'] ?>)</a>
         </div>
         <div class="profile">
             <div class="profile-left">

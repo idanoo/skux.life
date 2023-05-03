@@ -45,6 +45,7 @@ class User {
 
         if (!empty($id)) {
             $_SESSION['user_id'] = $id;
+            $_SESSION['username'] = $username;
             return true;
         }
          
@@ -70,6 +71,8 @@ class User {
 
         if (password_verify($password, $rows[0]['password'])) {
             $_SESSION['user_id'] = $rows[0]['id'];
+            $_SESSION['username'] = $username;
+
             return true;
         }
 
